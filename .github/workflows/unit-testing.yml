@@ -1,0 +1,22 @@
+name: Unit Testing
+
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  unit-testing:
+    name: Run Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      # Add steps to install dependencies and run unit tests
