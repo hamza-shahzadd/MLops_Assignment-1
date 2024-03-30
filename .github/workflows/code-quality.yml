@@ -1,28 +1,23 @@
-name: Code Quality
+name: code-quality
 
-on:
-  push:
-    branches:
-      - dev
+on: [push, pull_request]
 
 jobs:
-  code_quality:
-    runs-on: windows-latest
-
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    
     steps:
-    - name: Checkout code
+    - name: Checkout Repository
       uses: actions/checkout@v2
-
+      
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.x'
-
+        python-version: '3.10' 
+        
     - name: Install dependencies
       run: pip install flake8
-
+      
     - name: Run Flake8
-      run: |
-        flake8 .
-
-# workflow
+      run: flake8
