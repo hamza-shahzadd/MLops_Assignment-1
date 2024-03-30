@@ -1,17 +1,26 @@
 name: Unit Testing
 
 on:
-  pull_request:
+  push:
     branches:
       - test
 
 jobs:
-  unit-testing:
-    name: Run Unit Tests
+  test:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      # Add steps to install dependencies and run unit tests
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run unit tests
+      run: |
+        # Execute your unit tests here
