@@ -1,26 +1,22 @@
 name: Code Quality Check
-
 on:
   push:
     branches:
       - dev
-
 jobs:
-  code-quality:
-    name: Code Quality Check
-    runs-on: windows-latest
-
+  lint:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Check out code
         uses: actions/checkout@v2
-
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.x
-
+          python-version: '3.x'  # Specify your Python version
       - name: Install dependencies
-        run: pip install flake8
-
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8
       - name: Run Flake8
-        run: flake8 .
+        run: |
+          flake8 .
