@@ -2,8 +2,10 @@ from flask import Flask, jsonify, request
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression
 
-app = Flask(__name__)
+
+app = Flask(_name_)
 
 # Load the dataset into a Pandas DataFrame
 csv_file = "./dataset/LR.csv"
@@ -32,9 +34,11 @@ plt.title('Linear Regression on LR Dataset')
 plt.legend()
 plt.show()
 
+
 @app.route('/')
 def hello_world():
     return 'Hello, World!'
+
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -48,5 +52,6 @@ def predict():
     # Return predictions
     return jsonify({'predictions': y_pred.tolist()})
 
-if __name__ == '__main__':
+
+if _name_ == '_main_':
     app.run(debug=True)
